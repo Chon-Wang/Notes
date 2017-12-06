@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<script src='http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js'></script>
+</head>
+<body>
+	<script>
+	$(document).ready(function(e) {    
+        if (window.history && window.history.pushState) {
+            $(window).on('popstate', function () {
+                window.history.pushState('forward', null, '#');
+                window.history.forward(1);
+            });
+        }
+        if ('pushState' in history) {
+                window.history.pushState('forward', null, '#');
+                window.history.forward(1);                    
+            }else{
+                History.pushState('forward', null, '?state=2');
+                window.history.forward(1);
+        }
+        window.onhashchange=function(){ 
+            History.pushState('forward', null, '?state=1');
+        }
+    });
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=no;">
+	<title>ip查询</title>
+	<script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.js"></script>
+</head>
+<body>
+<input type="text" name="ip" id="ip" placeholder="请输入ip" value="15.20.90.244"><input type="button" name="" value="查询" id="btn">
+<ul id="box">
+	<li>{area}</li><li>{location}</li>
+</ul>
+<script type="text/javascript">
+	$("#btn").click(function(){
+		$("#box").text("");
+		$.getJSON(
+			"http://apis.juhe.cn/ip/ip2addr?callback=?",
+			{"ip":$('#ip').val(),"key":"2fd40024f12985c2ca2884afb61c6b5c","dtype":"json"},
+			function(data){
+				console.log(data);
+				var html="";
+				var area=data.result.area;
+				var location=data.result.location;
+				html=`<li>${area}</li><li>${location}</li>`;
+				$("#box").append(html);
+			}
+			)
+	})
+	
+	$(window).load(function(){//当前ip位置
+		$.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',
+
+			function(){ 
+	 
+			    alert(remote_ip_info.country);//国家
+  
+	  		    alert(remote_ip_info.province);//省份  
+	 
+			    alert(remote_ip_info.city);//城市  
+});
+	})
+
+
+</script>
+</body>
+</html>

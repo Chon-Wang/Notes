@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            #box{
+                margin:0 auto;
+                background:yellow;
+                border:4px double #808080;
+                width:600px;
+                text-align:center;
+            }
+            #box input{
+                width:130px;
+            }
+            #box table{
+                margin:5px 0;
+                background:lawngreen;
+            }
+        </style>
+        <script type="text/javascript">
+            onload = function(){
+                var aInput = document.getElementsByTagName('input');
+                var bTn = document.getElementById('btn');
+                var table = document.getElementsByTagName('table')[0];
+//              
+
+                //方法一
+                bTn.onclick = function(){
+                    
+                    var oTr=document.createElement('tr');//创建节点   创建新的tr
+                    table.appendChild(oTr);//将tr添加到table中
+                    
+                    var oTd1=document.createElement('td');//创建节点   创建新的td
+                    oTd1.innerHTML=aInput[0].value;//给第一个td赋第一个input的内容
+                    oTr.appendChild(oTd1);//将td1添加到tr中
+                    
+                    var oTd2=document.createElement('td');//创建节点   创建新的td
+                    oTd2.innerHTML=aInput[1].value;//给第二个td赋第二个input的内容
+                    oTr.appendChild(oTd2);//将td2添加到tr中
+                    
+                    var oTd3=document.createElement('td') ;//创建节点   创建新的td
+                    oTd3.innerHTML=aInput[2].value;//给第三个td赋第三个input的内容
+                    oTr.appendChild(oTd3);//将td3添加到tr中
+                    
+                    var oTd4=document.createElement('td') ;//创建节点   创建新的td
+                    oTd4.innerHTML='<a href="javascript:;">删除</a>';//给表格赋内容
+                    oTr.appendChild(oTd4);//将td4添加到tr中
+                
+                    oTd4.getElementsByTagName('a')[0].onclick=function(){
+                        table.removeChild(this.parentNode.parentNode);
+                        //移除table下面的子节点tr
+                        //this.parentNode.parentNode 为触发对象a的父级的父级tr
+                    }//删除表格行
+
+
+
+
+                //方法二
+//              bTn.onclick = function(){
+//                  
+//                  var oTr=document.createElement('tr');//创建节点
+//                  table.appendChild(oTr);//创建table的子节点tr
+//                  for(var i = 0; i < aInput.length-1; i ++){
+//                      var oTd=document.createElement('td');//创建节点
+//                      oTd.innerHTML=aInput[i].value;//给表格赋内容
+//                      oTr.appendChild(oTd);//创建tr的子节点td
+//                  }
+//                  
+//                  var oTd=document.createElement('td') ;//创建节点
+//                  oTd.innerHTML='<a href="javascript:;">删除</a>';//给表格赋内容
+//                  oTr.appendChild(oTd);//创建tr的子节点td
+//                  
+//                  oTd.getElementsByTagName('a')[0].onclick=function(){
+//                      table.deleteRow(1);
+//                  }
+                }
+            }           
+        </script>
+    </head>
+    <body>
+        <div id="box">
+            <form action="" method="post">
+                ID:<input type="text" name="" id="" value="" />
+                姓名：<input type="text" name="" id="" value="" />
+                电话：<input type="text" name="" id="" value="" />
+                <input type="reset" name="btn" id="btn" value="保存" style="width:50px;"/>
+                
+            </form>
+            
+            <table border="" cellspacing="" cellpadding="" width="600px" >
+            <tr>
+                <td>Id</td>
+                <td>name</td>
+                <td>tal</td>
+                <td>操作</td>
+            </tr>           
+            </table>
+        </div>
+        
+    </body>
+</html>
