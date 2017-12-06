@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>防重复提交插件DEMO</title>
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../dist/jquery.throttle-ajax.js"></script>
+</head>
+<body>
+<input id="testButton" type="button" value="test ajax">
+</body>
+<script type="text/javascript">
+    //请求间隔可全局设置，也可单独设置
+
+    $.ajaxSetup({
+        replayInterval: 3000
+    });
+    //利用防抖函数注册按钮点击事件
+    $('#testButton').debounce('click',function(){
+        $.ajax({
+            url: 'http://api.map.baidu.com/location/ip?ak=aMR1A9lIxoTWzg3PVTGmeBBj',
+//            replayInterval: 1000,
+            data: {
+                coor: 'bd09ll'
+            },
+            dataType: 'jsonp',
+            success: function(data){
+                console.info(data);
+            }
+        });
+        $.ajax({
+            url: 'http://api.map.baidu.com/location/ip?ak=aMR1A9lIxoTWzg3PVTGmeBBj',
+//            replayInterval: 1000,
+            data: {
+                coor: 'bd09ll'
+            },
+            dataType: 'jsonp',
+            success: function(data){
+                console.info(data);
+            }
+        });
+    });
+</script>
+</html>
